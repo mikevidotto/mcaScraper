@@ -1,4 +1,4 @@
-module mcaScraper
+module github.com/mikevidotto/MusicChartsScraper
 
 go 1.22.4
 

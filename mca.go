@@ -30,7 +30,7 @@ var (
 	Albums    []Album
 )
 
-func MusicTopTen() {
+func MusicTopTen() string {
 	//fmt.Println(topwebs.TopTen())
 	ScrapeUrl := "https://musicchartsarchive.com/"
 
@@ -59,7 +59,8 @@ func MusicTopTen() {
 	c.Visit(ScrapeUrl)
 	songsJson := ParseSongs(songList)
 
-	fmt.Println(songsJson)
+	//fmt.Println(songsJson)
+	return songsJson
 }
 
 func ParseSongs(body string) string {
