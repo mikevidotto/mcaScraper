@@ -31,7 +31,6 @@ var (
 )
 
 func MusicTopTen() string {
-	//fmt.Println(topwebs.TopTen())
 	ScrapeUrl := "https://musicchartsarchive.com/"
 
 	c := colly.NewCollector(colly.AllowedDomains("musicchartsarchive.com"))
