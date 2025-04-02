@@ -1,4 +1,4 @@
-package mcaScraper
+package main 
 
 import (
 	"bufio"
@@ -30,12 +30,17 @@ var (
 	Albums    []Album
 )
 
+func main() {
+    fmt.Println(MusicTopTen())
+}
+
 func MusicTopTen() string {
 	ScrapeUrl := "https://musicchartsarchive.com/"
 
 	c := colly.NewCollector(colly.AllowedDomains("musicchartsarchive.com"))
 
 	c.OnRequest(func(r *colly.Request) {
+		fmt.Println("Visiting", r.URL)
 	})
 
 	c.OnHTML("tr.odd td", func(h *colly.HTMLElement) {
@@ -52,7 +57,6 @@ func MusicTopTen() string {
 
 	c.Visit(ScrapeUrl)
 	songsJson := ParseSongs(songList)
-    fmt.Print("\n")
 
 	return songsJson
 }
