@@ -36,7 +36,6 @@ func MusicTopTen() string {
 	c := colly.NewCollector(colly.AllowedDomains("musicchartsarchive.com"))
 
 	c.OnRequest(func(r *colly.Request) {
-		fmt.Println("Visiting", r.URL)
 	})
 
 	c.OnHTML("tr.odd td", func(h *colly.HTMLElement) {
@@ -49,16 +48,12 @@ func MusicTopTen() string {
 	})
 
 	c.OnScraped(func(r *colly.Response) {
-		////fmt.Println("SONGS\n", songList)
-		////fmt.Println("ALBUMS\n", albumList)
-		//fmt.Println(ParseSongs(songList), "songs.")
-		//fmt.Println(ParseAlbums(albumList), "albums.")
 	})
 
 	c.Visit(ScrapeUrl)
 	songsJson := ParseSongs(songList)
+    fmt.Print("\n")
 
-	//fmt.Println(songsJson)
 	return songsJson
 }
 
