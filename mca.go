@@ -31,7 +31,19 @@ var (
 )
 
 func main() {
-    fmt.Println(MusicTopTen())
+    var records []Song
+	j := MusicTopTen()
+
+	if err := json.Unmarshal([]byte(j), &records); err != nil {
+		panic(err)
+	}
+
+    fmt.Println("------------------------------------")
+	fmt.Println("Here are the top 10 songs this week:\n")
+	for _, record := range records {
+        fmt.Printf("%3s %1s %-2s by %2s\n", record.Placement, "-",  record.Title, record.Artist)
+	}
+    fmt.Println("")
 }
 
 func MusicTopTen() string {
@@ -40,7 +52,6 @@ func MusicTopTen() string {
 	c := colly.NewCollector(colly.AllowedDomains("musicchartsarchive.com"))
 
 	c.OnRequest(func(r *colly.Request) {
-		fmt.Println("Visiting", r.URL)
 	})
 
 	c.OnHTML("tr.odd td", func(h *colly.HTMLElement) {
