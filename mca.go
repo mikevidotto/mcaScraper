@@ -38,7 +38,7 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Printf("\n%-118s|\n%119s\n", "Here are the top 10 songs this week:", "|")
+	fmt.Printf("\n%-118s\n\n", "Here are the top 10 songs this week:")
 	for _, record := range records {
         title := record.Title
         title = strings.TrimPrefix(title, " ")
