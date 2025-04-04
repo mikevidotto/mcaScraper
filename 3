@@ -42,9 +42,8 @@ func main() {
 	fmt.Println("Here are the top 10 songs this week:\n")
 	for _, record := range records {
         title := record.Title
-        title = strings.TrimPrefix(title, " ")
-        title = "\"" + title + "\""
-        fmt.Printf("%3s %1s %-20s by %2s\n", record.Placement, "-",  title, record.Artist)
+        strings.TrimPrefix(title, " ")
+        fmt.Printf("%3s %1s '%-2s' by %2s\n", record.Placement, "-",  title, record.Artist)
 	}
     fmt.Println("")
 }
